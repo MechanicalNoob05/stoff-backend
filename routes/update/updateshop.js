@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Customermodel = require('../../models/user');
+const Storemodel = require('../../models/store');
 var fetchuser = require('../../middleware/fetchuser')
 
 router.post('/',fetchuser, async (req, res) => {
@@ -8,13 +8,14 @@ router.post('/',fetchuser, async (req, res) => {
         const userid = req.user.id
         let filter = { _id: userid };
         let update = {
-            Firstname: Firstname,
-            Lastname: Lastname,
-            Phonenumber: Phonenumber,
+            Name :Name,
+            Address :Address,
+            Zipcode:Zipcode,
+            Phonenumber :Phonenumber ,
             Password: password,
         };
-        let customer = await Customermodel.findOneAndUpdate(filter, update, { new: true });
-        return res.status(200).json({ customer });
+        let store = await Storemodel.findOneAndUpdate(filter, update, { new: true });
+        return res.status(200).json({ store });
     }
     catch (error) {
         return res.status(500).json({ err: error.message });
