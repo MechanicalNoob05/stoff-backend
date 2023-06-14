@@ -1,6 +1,7 @@
 const express = require('express')
 var cors = require('cors')
 const app = express()
+app.use(express.json())
 
 // Connect the database
 const db = require('./db.js')
@@ -34,7 +35,13 @@ app.use('/app/addproducts',require('./routes/create/Product'))
 app.use('/app/deleteproducts',require('./routes/delete/deleteproduct'))
 app.use('/app/updateproducts',require('./routes/update/updateproduct'))
 
+
+
+
+
+
+
+
 app.listen(process.env.PORT||port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-//hello from jayesh

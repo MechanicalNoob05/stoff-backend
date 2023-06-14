@@ -26,7 +26,7 @@ route.post('/',[body('Password','Enter a valid password').exists(),body('Phonenu
         return res.status(400).json({errors: errors.array()});
       }
       const data={
-        Store:{
+        user:{
          id:Store._id
         }
       }

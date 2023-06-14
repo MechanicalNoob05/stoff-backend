@@ -5,15 +5,14 @@ const route = express.Router();
 const { body, validationResult } = require('express-validator');
 var fetchuser = require('../../middleware/fetchuser')
 
-route.post('/',fetchuser, [body('cardname', 'Enter a valid name').isLength({ min: 3 })], async (req, res) => {
+route.post('/',fetchuser, [body('Description', 'Enter a valid name').isLength({ min: 3 })], async (req, res) => {
   const errors = validationResult(req);
-  var today = new Date();
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
   try {
     const product = await Product.create({
-        Store: req.user.id,
+        store: req.user.id,
         Quantity: req.body.Quantity,
         Price: req.body.Price,
         Name: req.body.Name,
