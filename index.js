@@ -36,6 +36,15 @@ app.use('/app/deleteproducts',require('./routes/delete/deleteproduct'))
 app.use('/app/updateproducts',require('./routes/update/updateproduct'))
 
 
+// routes for the getting details regarding an order by a store owner and a user
+app.use('/app/getuserdata',require('./routes/get/Getuserdata.js'))
+app.use('/app/getstoredata',require('./routes/get/Getstoredata.js'))
+
+
+// routes for the adding a order
+app.use('/app/addorder',require('./routes/create/order.js'))
+// app.use('/app/deleteproducts',require('./routes/delete/deleteproduct'))
+// app.use('/app/updateproducts',require('./routes/update/updateproduct'))
 
 
 
