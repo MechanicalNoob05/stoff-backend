@@ -17,6 +17,8 @@ router.post('/', fetchuser, async (req, res) => {
             Highlight: req.body.Highlight,
             color: req.body.color,
             Price: req.body.Price,
+            Brand: req.body.Brand,
+            Category: req.body.Category,
             Images: req.body.Images
         };
         let product = await Product.findOneAndUpdate(filter, update, { new: true });

@@ -16,6 +16,8 @@ route.post('/',fetchuser, [body('Description', 'Enter a valid name').isLength({ 
         Quantity: req.body.Quantity,
         Price: req.body.Price,
         Name: req.body.Name,
+        Brand: req.body.Brand,
+        Category: req.body.Category,
         Gender: req.body.Gender,
         Description: req.body.Description,
         Highlight: req.body.Highlight,

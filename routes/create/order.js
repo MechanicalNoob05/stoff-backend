@@ -20,7 +20,6 @@ route.post('/',fetchuser, async (req, res) => {
         Paymentstatus: req.body.Paymentstatus
     })
 
-
     const userid = req.user.id
     let filter = { _id: userid };
     const user = await Usermodel.find({_id: userid})
@@ -29,7 +28,6 @@ route.post('/',fetchuser, async (req, res) => {
     let update = {Orderlist: Orders};
     let User = await Usermodel.findOneAndUpdate(filter, update, { new: true });
 
-    
     const storeid = req.body.Store
     let filterstore = { _id: storeid };
     const store = await Storemodel.find({_id: storeid})
@@ -38,8 +36,6 @@ route.post('/',fetchuser, async (req, res) => {
     let updatesore = {Orderlist: storeorders};
     let stores = await Storemodel.findOneAndUpdate(filterstore, updatesore, { new: true });
 
-
-    
     const productid = req.body.Product
     let filterproduct = { _id: productid };
     const product = await Productmodel.find({_id: productid})

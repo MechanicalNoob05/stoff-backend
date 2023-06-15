@@ -5,6 +5,8 @@ const BookingSchema = mongoose.Schema(
       Quantity: {type: String,required: true,},
       Name: {type: String,required: true,},
       Gender: {type: String,required: true,},
+      Brand: {type: String,required: true,},
+      Category: {type: String,required: true,},
       Description: {type: String,required: true,unique: true},
       Highlight: {type: String,required: true,},
       color: [{type: String,required: true,}],
