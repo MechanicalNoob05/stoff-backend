@@ -231,16 +231,19 @@ route.post('/', async (req, res) => {
       ]
     };
     const product = await Product.find().populate("store")
-    var prev_purchase,prev_brands,prev_cat,prev_colors,prev_prices,prev_gen,cart_brands,cart_cat,cart_colors,cart_prices,cart_gen,cart_purchase
+    var pro_purchase,prev_purchase,prev_brands,prev_cat,prev_colors,prev_prices,prev_gen,cart_brands,cart_cat,cart_colors,cart_prices,cart_gen,cart_purchase
 
     //previous purchase
-
+    try{
     prev_brands = prev.product.map(item => item.Brand);
     prev_colors = prev.product.map(item => item.color);
     prev_cat = prev.product.map(item => item.Category);
     prev_prices = prev.product.map(item => item.Price);
     prev_gen = prev.product.map(item=>item.Gender)
     prev_purchase = [prev_brands,prev_cat,prev_colors,prev_gen,prev_prices]
+    }catch (e){
+      prev_purchase = [[],[],[],[],[]]
+    }
 
     //carts
     try{
@@ -261,13 +264,17 @@ route.post('/', async (req, res) => {
     var pro_price = []
     var pro_gender = []
     var pro_id = []
+    try{
     product.map((item) =>(pro_brand.push(item.Brand)))
     product.map((item) =>(pro_color.push(item.color)))
     product.map((item) =>(pro_category.push(item.Category)))
     product.map((item) =>(pro_price.push(item.Price)))
     product.map((item) =>(pro_gender.push(item.Gender)))
     product.map((item) =>(pro_id.push(item._id)))
-    var pro_purchase = [pro_brand,pro_color,pro_category,pro_price,pro_gender,pro_id]
+    pro_purchase = [pro_brand,pro_color,pro_category,pro_price,pro_gender,pro_id]
+    }catch (e){
+      res.status(200).json("Gandu Product toh daal")
+    }
     // console.log(pro_id)
     // console.log(product)
 
