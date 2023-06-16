@@ -43,8 +43,7 @@ app.use('/app/getstoredata',require('./routes/get/Getstoredata.js'))
 
 // routes for the adding a order
 app.use('/app/addorder',require('./routes/create/order.js'))
-// app.use('/app/deleteproducts',require('./routes/delete/deleteproduct'))
-// app.use('/app/updateproducts',require('./routes/update/updateproduct'))
+app.use('/app/deleteorder',require('./routes/delete/deleteorder.js'))
 
 
 

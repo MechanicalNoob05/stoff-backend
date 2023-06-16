@@ -47,7 +47,6 @@ route.post('/',fetchuser, async (req, res) => {
     let products = await Productmodel.findOneAndUpdate(filterproduct, updateproduct, { new: true });
 
 
-
     res.status(200).json({ Order})
   } catch (err) {
     res.json({ errors: err, message: err.message })
