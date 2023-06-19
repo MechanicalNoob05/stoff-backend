@@ -5,12 +5,12 @@ const route = express.Router();
 route.post('/', async (req, res) => {
   try {
     const user_pref = {
-      'brand':['hrx','fastrack','Blossom','Denim Diva'],
+      'brand': ['hrx', 'fastrack', 'Blossom', 'Denim Diva'],
       'gender': 'female',
-      'age' :  34,
-      'type' : ['shirt','kurti'],
-      'colors' : ['black','white'],
-  }
+      'age': 34,
+      'type': ['shirt', 'kurti'],
+      'colors': ['black', 'white'],
+    }
     const prev = {
       "product": [
         {
@@ -146,10 +146,9 @@ route.post('/', async (req, res) => {
           "updatedAt": "2023-06-12T12:04:50.784Z",
           "__v": 0
         }
-        
       ]
     };
-    // const cart = {}
+
     const cart = {
       "product": [
         {
@@ -231,28 +230,27 @@ route.post('/', async (req, res) => {
       ]
     };
     const product = await Product.find().populate("store")
-    var prev_purchase,prev_brands,prev_cat,prev_colors,prev_prices,prev_gen,cart_brands,cart_cat,cart_colors,cart_prices,cart_gen,cart_purchase
+    var prev_purchase, prev_brands, prev_cat, prev_colors, prev_prices, prev_gen, cart_brands, cart_cat, cart_colors, cart_prices, cart_gen, cart_purchase
 
     //previous purchase
-
     prev_brands = prev.product.map(item => item.Brand);
     prev_colors = prev.product.map(item => item.color);
     prev_cat = prev.product.map(item => item.Category);
     prev_prices = prev.product.map(item => item.Price);
-    prev_gen = prev.product.map(item=>item.Gender)
-    prev_purchase = [prev_brands,prev_cat,prev_colors,prev_gen,prev_prices]
+    prev_gen = prev.product.map(item => item.Gender)
+    prev_purchase = [prev_brands, prev_cat, prev_colors, prev_gen, prev_prices]
 
     //carts
-    try{
-    cart_brands = cart.product.map(item => item.Brand);
-    cart_colors = cart.product.map(item => item.color);
-    cart_cat = cart.product.map(item => item.Category);
-    cart_prices = cart.product.map(item => item.Price);
-    cart_gen = cart.product.map(item=>item.Gender)
-    cart_purchase = [cart_brands,cart_cat,cart_colors,cart_gen,cart_prices]
-  }catch (e){
-    cart_purchase = [[],[],[],[],[]]
-  }
+    try {
+      cart_brands = cart.product.map(item => item.Brand);
+      cart_colors = cart.product.map(item => item.color);
+      cart_cat = cart.product.map(item => item.Category);
+      cart_prices = cart.product.map(item => item.Price);
+      cart_gen = cart.product.map(item => item.Gender)
+      cart_purchase = [cart_brands, cart_cat, cart_colors, cart_gen, cart_prices]
+    } catch (e) {
+      cart_purchase = [[], [], [], [], []]
+    }
 
     //products
     var pro_brand = []
@@ -261,20 +259,18 @@ route.post('/', async (req, res) => {
     var pro_price = []
     var pro_gender = []
     var pro_id = []
-    product.map((item) =>(pro_brand.push(item.Brand)))
-    product.map((item) =>(pro_color.push(item.color)))
-    product.map((item) =>(pro_category.push(item.Category)))
-    product.map((item) =>(pro_price.push(item.Price)))
-    product.map((item) =>(pro_gender.push(item.Gender)))
-    product.map((item) =>(pro_id.push(item._id)))
-    var pro_purchase = [pro_brand,pro_color,pro_category,pro_price,pro_gender,pro_id]
-    // console.log(pro_id)
-    // console.log(product)
+    product.map((item) => (pro_brand.push(item.Brand)))
+    product.map((item) => (pro_color.push(item.color)))
+    product.map((item) => (pro_category.push(item.Category)))
+    product.map((item) => (pro_price.push(item.Price)))
+    product.map((item) => (pro_gender.push(item.Gender)))
+    product.map((item) => (pro_id.push(item._id)))
+    var pro_purchase = [pro_brand, pro_color, pro_category, pro_price, pro_gender, pro_id]
 
-    const r = new recommendation(user_pref,prev_purchase,cart_purchase,pro_purchase);
-    
+    const r = new recommendation(user_pref, prev_purchase, cart_purchase, pro_purchase);
+
     console.log(r.recom())
-    res.status(200).json({product})
+    res.status(200).json({ product })
   } catch (err) {
     res.json({ errors: err, message: err.message })
   }
