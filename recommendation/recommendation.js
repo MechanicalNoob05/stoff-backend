@@ -74,7 +74,7 @@ class recommendation{
                 }
             }
         }
-
+        this.bsort(recon)
         return recon
     }
     get_Buy_Range(prev,cart){
@@ -175,5 +175,32 @@ class recommendation{
         this.ft.push(this.mostFrequent(cat))
         this.fc.push(this.mostFrequent(colors))
     }//done
+    bsort(arr)
+    {
+    var i, j, temp,n;
+    n = arr.length
+    var swapped;
+    for (i = 0; i < n - 1; i++)
+    {
+        swapped = false;
+        for (j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j][0] < arr[j + 1][0])
+            {
+        
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                swapped = true;
+            }
+        }
+ 
+        // IF no two elements were
+        // swapped by inner loop, then break
+        if (swapped == false)
+        break;
+    }
+}
+
 }
 module.exports = recommendation;
