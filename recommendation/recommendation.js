@@ -15,7 +15,7 @@ class recommendation{
     }
     recom(){
         var recon = []
-        var i,temp
+        var i,temp,ctemp
         if(Object.keys(this.user_pref).length==0){
             for(i=0;i<this.product[0].length;i++){
                 recon.push([0,this.product[5][i]])
@@ -37,6 +37,8 @@ class recommendation{
                     this.ft.push(this.user_pref.type[i])
                 }
             }
+
+            
             for(i in this.user_pref.colors){
                 if (this.ispresent(this.fc,this.user_pref.colors[i])==false){
                     this.fc.push(this.user_pref.colors[i])
@@ -51,7 +53,7 @@ class recommendation{
             // console.log(id_product)
             for(var k=0;k<this.product[0].length;k++){
                 var match = 0
-                if(gen_product[k]==this.user_pref.gender || gen_product[k]=='unisex'){
+                if(gen_product[k].toString().toLowerCase()==this.user_pref.gender.toString().toLowerCase() || gen_product[k].toString().toLowerCase()=='unisex'){
                     
                     if (this.ispresent(this.fb,brand_product[k])){
                        
@@ -60,9 +62,18 @@ class recommendation{
                     if(this.ispresent(this.ft,cat_product[k])){
                         match+=1
                     }
-                    if(this.ispresent(this.fc,color_product[k])){
-                        match+=1
+                    
+
+                    for(ctemp in color_product[k]){
+                        if(this.ispresent(this.fc,color_product[k][ctemp])){
+                            match+=1
+                            break
+                        }
                     }
+
+                    // if(this.ispresent(this.fc,color_product[k])){
+                    //     match+=1
+                    // }
                     if(this.inRange(prices_product[k])){
                         match+=1
                     }
@@ -135,7 +146,7 @@ class recommendation{
         var r
         r = arr.length
         for(var i=0;i<r;i++){
-            if(arr[i]==x){
+            if(arr[i].toLowerCase()==x.toString().toLowerCase()){
                 return true
             }
         }
@@ -152,8 +163,10 @@ class recommendation{
                 brands.push(prev[0][i])
                 cat.push(prev[1][i])
                 colors.push(prev[2][i])
+            
             }
         }
+        console.log(colors)
         this.fb.push(this.mostFrequent(brands))
         this.ft.push(this.mostFrequent(cat))
         this.fc.push(this.mostFrequent(colors))

@@ -273,7 +273,7 @@ route.post('/', async (req, res) => {
     product.map((item) =>(pro_id.push(item._id)))
     pro_purchase = [pro_brand,pro_color,pro_category,pro_price,pro_gender,pro_id]
     }catch (e){
-      res.status(200).json("Gandu Product toh daal")
+      res.status(200).json("Add products")
     }
     // console.log(pro_id)
     // console.log(product)
