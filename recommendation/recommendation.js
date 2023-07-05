@@ -166,7 +166,7 @@ class recommendation{
             
             }
         }
-        console.log(colors)
+        
         this.fb.push(this.mostFrequent(brands))
         this.ft.push(this.mostFrequent(cat))
         this.fc.push(this.mostFrequent(colors))

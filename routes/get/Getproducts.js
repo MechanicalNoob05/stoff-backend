@@ -1,6 +1,7 @@
 const express = require('express');
 const Product = require('../../models/product');
 const recommendation = require('../../recommendation/recommendation.js')
+const sqe = require('../../recommendation/searchQueryInfoExt.js')
 const route = express.Router();
 route.post('/', async (req, res) => {
   try {
@@ -274,8 +275,10 @@ route.post('/', async (req, res) => {
     // console.log(product)
 
     const r = new recommendation(user_pref, prev_purchase, cart_purchase, pro_purchase);
-
+    const s = new sqe();
+    // console.log(product)
     console.log(r.recom())
+    // console.log(s.extractClothingInfo('I am looking for a blue adidas shirt'))
     res.status(200).json({ product })
   } catch (err) {
     res.json({ errors: err, message: err.message })
