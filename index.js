@@ -35,6 +35,8 @@ app.use('/app/addproducts',require('./routes/create/Product'))
 app.use('/app/deleteproducts',require('./routes/delete/deleteproduct'))
 app.use('/app/updateproducts',require('./routes/update/updateproduct'))
 
+app.use('/app/addmultipleproducts',require('./routes/create/multipleproduct'))
+app.use('/app/updateproductscolor',require('./routes/update/updatecolor'))
 
 // routes for the getting details regarding an order by a store owner and a user
 app.use('/app/getuserdata',require('./routes/get/Getuserdata.js'))
