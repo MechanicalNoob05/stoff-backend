@@ -14,7 +14,7 @@ route.post('/',fetchuser, async (req, res) => {
     for (var i = 0; i < req.body.productarray.length; i++){
     const product = await Product.create({
         store: req.user.id,
-        Quantity: req.body.productarray[i].Quantity,
+        Quantity: "4",
         Price: req.body.productarray[i].Price,
         Name: req.body.productarray[i].Name,
         Brand: req.body.productarray[i].Brand,
@@ -22,7 +22,7 @@ route.post('/',fetchuser, async (req, res) => {
         Gender: req.body.productarray[i].Gender,
         Description: req.body.productarray[i].Description,
         Highlight: req.body.productarray[i].Highlight,
-        color: req.body.productarray[i].color,
+        color: req.body.productarray[i].Color,
         Price: req.body.productarray[i].Price
     })
     const userid = req.user.id
@@ -33,7 +33,7 @@ route.post('/',fetchuser, async (req, res) => {
     let update = {Productlist: Products};
     let stores = await Storemodel.findOneAndUpdate(filter, update, { new: true });
     }
-    res.status(200).json({ stores})
+    res.status(200).json("Done")
   } catch (err) {
     res.json({ errors: err, message: err.message })
   }
