@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
         for (var i = 0; i < req.body.arrayindex.length; i++) {
             let filter = { _id: req.body.arrayindex[i] };
             let update = {
-                Images:["https://img3.gadgetsnow.com/gd/images/products/additional/large/G10603_View_1/mobiles/feature-phones/nokia-105-dual-sim-black-4-mb-.jpg","https://img2.gadgetsnow.com/gd/images/products/additional/large/G10603_View_2/mobiles/feature-phones/nokia-105-dual-sim-black-4-mb-.jpg","https://img5.gadgetsnow.com/gd/images/products/additional/large/G10603_View_3/mobiles/feature-phones/nokia-105-dual-sim-black-4-mb-.jpg"]
+                size:[  "XS",  "S",  "M",  "L",  "XL",  "XXL",  "XXXL",  "4XL",  "5XL",  "6XL",  "7XL",  "8XL"]
             };
             let product = await Product.findOneAndUpdate(filter, update, { new: true });
         }

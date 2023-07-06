@@ -9,6 +9,7 @@ route.post('/', async (req, res) => {
         $or: [
             { Name: { $regex: new RegExp(`${req.body.searchquery}|${singularInput}`, 'i') }},
             { Brand: { $regex: new RegExp(`${req.body.searchquery}|${singularInput}`, 'i') } },
+            { Gender: { $regex: new RegExp(`${req.body.searchquery}|${singularInput}`, 'i') } },
             { Category: { $regex: new RegExp(`${req.body.searchquery}|${singularInput}`, 'i') } },
             { Highlight: { $regex: new RegExp(`${req.body.searchquery}|${singularInput}`, 'i') } },
         ]
